@@ -1,0 +1,11 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig-shared.json",
+  "compilerOptions": {
+    "paths": {
+      "@shared": [
+        "src/mf_shared_components"
+      ]
+    }
+  },
+}
