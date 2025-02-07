@@ -56,7 +56,7 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
 
   private parentResizeObserver!: ResizeObserver; // Observer for resizing the parent element.
   private resizeObserver!: ResizeObserver; // Observer for resizing the tooltip element.
-  private setTimeoutTooltip!: number | ReturnType<typeof setTimeout>; // Timeout for tooltip delay actions.
+  private setTimeoutTooltip?: number | ReturnType<typeof setTimeout>; // Timeout for tooltip delay actions.
   private listeners: (() => void)[] = []; // Array of listeners for event management.
 
   constructor(
