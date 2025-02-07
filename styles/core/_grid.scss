@@ -1,0 +1,44 @@
+@use "sass:math";
+
+// Clase para las filas del grid
+.row {
+  display: flex; // Habilita el layout flexbox
+  flex-wrap: wrap; // Permite que los elementos hijos se envuelvan en una nueva fila
+  margin-right: -#{math.div($gutter-width, 2)}; // Ajusta los gutters a la derecha
+  margin-left: -#{math.div($gutter-width, 2)}; // Ajusta los gutters a la izquierda
+}
+
+.col {
+  padding-right: math.div($gutter-width, 2); // Espaciado a la derecha
+  padding-left: math.div($gutter-width, 2); // Espaciado a la izquierda
+}
+
+$breakpoint-list: map-keys(
+  $breakpoints
+); // Lista de los nombres de los breakpoints
+
+// Generar columnas por rango de breakpoints
+@for $i from 1 through length($breakpoint-list) {
+  $current: nth($breakpoint-list, $i); // Breakpoint actual
+  $min-width: map-get(
+    $breakpoints,
+    $current
+  ); // Ancho mínimo del breakpoint actual
+
+  // Generar clases de columnas
+  @for $col from 1 through $total-columns {
+    .col-#{$current}-#{$col} {
+      @media (width >= #{$min-width}) {
+        flex: 0 0 calc(100% / #{$total-columns} * #{$col});
+        max-width: calc(100% / #{$total-columns} * #{$col});
+        min-width: calc(100% / #{$total-columns} * #{$col});
+      }
+    }
+  }
+}
+
+.col-auto {
+  flex: 1; // Todas las columnas ocupan espacio igual por defecto
+  padding-right: math.div($gutter-width, 2); // Espaciado a la derecha
+  padding-left: math.div($gutter-width, 2); // Espaciado a la izquierda
+}

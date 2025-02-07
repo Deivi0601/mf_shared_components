@@ -1,0 +1,20 @@
+<ng-container *ngIf="!hideNotification">
+  <div
+    class="primary-notification-custom display-flex align-items-center {{
+      positionClass
+    }} {{ theme }}"
+    [@notificationSlide]="{ value: '', params: translateEnterAndLeave }"
+  >
+    <i
+      class="fa-solid fa-lg cl-secondary-background-theme mr-50-rem"
+      [ngClass]="
+        theme === 'notification-success'
+          ? 'fa-circle-check'
+          : 'fa-triangle-exclamation'
+      "
+    ></i>
+    <p class="font-body-medium cl-secondary-background-theme">
+      {{ message }}
+    </p>
+  </div>
+</ng-container>

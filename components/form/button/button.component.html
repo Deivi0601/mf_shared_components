@@ -1,0 +1,14 @@
+<button
+  (click)="eventButtonClick.emit()"
+  [ngClass]="classes"
+  [ngStyle]="styles"
+  type="button"
+>
+  @if(loading){
+  <i
+    class="fa-solid fa-circle-notch fa-lg fa-spin cl-secondary-background-theme"
+  ></i>
+  }@else{
+  <ng-content></ng-content>
+  }
+</button>
