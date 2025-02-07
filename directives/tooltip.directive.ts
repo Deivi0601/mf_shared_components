@@ -51,8 +51,8 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
   @Input() configTooltip!: ConfigTooltip; // Configuration for tooltip positioning, activation, and styling.
   @Input() offsetPositionTooltip!: OffsetPositionTooltip; // Optional offset adjustments for overlay positioning.
 
-  private arrowTooltipElement!: HTMLElement; // Element representing the tooltip arrow.
-  private tooltipElement!: HTMLElement; // Main tooltip element.
+  private arrowTooltipElement?: HTMLElement; // Element representing the tooltip arrow.
+  private tooltipElement?: HTMLElement; // Main tooltip element.
 
   private parentResizeObserver!: ResizeObserver; // Observer for resizing the parent element.
   private resizeObserver!: ResizeObserver; // Observer for resizing the tooltip element.
@@ -193,8 +193,8 @@ export class TooltipDirective implements AfterViewInit, OnDestroy {
     if (typeof this.tooltipContent !== "string") this.viewContainerRef.clear();
 
     this.renderer.removeChild(document.body, this.tooltipElement);
-    this.arrowTooltipElement = null;
-    this.tooltipElement = null;
+    this.arrowTooltipElement = undefined;
+    this.tooltipElement = undefined;
 
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
